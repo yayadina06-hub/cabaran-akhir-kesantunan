@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujian Master: Rumah Kesantunan Berbahasa</title>
+    <!-- Tailwind CSS untuk reka bentuk premium & moden -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle, #1a0f1a 0%, #0a030a 100%);
+        }
+        .title-traditional {
+            font-family: 'Cinzel', serif;
+        }
+        /* Animasi Kunci Bergetar */
+        @keyframes shake {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-4px) rotate(-3deg); }
+            75% { transform: translateY(4px) rotate(3deg); }
+        }
+        .key-glow {
+            animation: shake 2.5s infinite ease-in-out;
+            filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
+        }
+        /* Animasi Kerosakan (Goyang Skrin) */
+        .damage-shake {
+            animation: screen-shake 0.4s ease-in-out;
+        }
+        @keyframes screen-shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+    </style>
+</head>
+<body id="main-body" class="text-gray-100 min-h-screen flex flex-col justify-between p-4 md:p-8 transition-all duration-300">
+
+    <!-- HEADER: Bertemakan Rumah Kesantunan & Status Nyawa -->
+    <header class="max-w-4xl w-full mx-auto flex flex-col md:flex-row justify-between items-center gap-4 mb-6 border-b border-amber-900/40 pb-4">
+        <div class="text-center md:text-left">
+            <h1 class="title-traditional text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 tracking-wider">
+                RUMAH KESANTUNAN BERBAHASA
+            </h1>
+            <p class="text-xs text-amber-400/80 tracking-widest mt-1">Ujian Penguasaan 3 Ruang ThingLink</p>
+        </div>
+        
+        <!-- Status Petunjuk Kunci & Bar Adab -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 bg-amber-950/20 p-3 rounded-xl border border-amber-500/20 w-full md:w-auto">
+            <!-- Bar Adab (HP Player) -->
+            <div class="flex items-center gap-2 w-full sm:w-48">
+                <span class="text-xs font-bold text-red-400 whitespace-nowrap"><i class="fa-solid fa-heart mr-1"></i> Bar Adab:</span>
+                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden border border-slate-700">
+                    <div id="adab-hp-bar" class="bg-gradient-to-r from-emerald-500 to-green-400 h-full w-full transition-all duration-500"></div>
+                </div>
+                <span id="adab-hp-text" class="text-xs font-bold text-emerald-400">100%</span>
+            </div>
+
+            <!-- Petunjuk Kunci -->
+            <div class="flex gap-2">
+                <div id="key-indicator-1" class="opacity-30 flex items-center gap-1 px-2.5 py-1 rounded bg-black/40 text-[10px] font-bold transition-all duration-300">
+                    <i class="fa-solid fa-key text-amber-400"></i> Ruang Tamu
+                </div>
+                <div id="key-indicator-2" class="opacity-30 flex items-center gap-1 px-2.5 py-1 rounded bg-black/40 text-[10px] font-bold transition-all duration-300">
+                    <i class="fa-solid fa-key text-emerald-400"></i> Ruang Makan
+                </div>
+                <div id="key-indicator-3" class="opacity-30 flex items-center gap-1 px-2.5 py-1 rounded bg-black/40 text-[10px] font-bold transition-all duration-300">
+                    <i class="fa-solid fa-key text-cyan-400"></i> Dapur/Balkoni
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN GAME AREA -->
+    <main class="max-w-4xl w-full mx-auto flex-grow flex items-center justify-center">
+
+        <!-- 1. SKRIN MULA -->
+        <div id="screen-intro" class="w-full bg-slate-900/90 backdrop-blur-md rounded-2xl border border-amber-500/30 p-6 md:p-10 text-center shadow-2xl">
+            <div class="w-24 h-24 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_25px_rgba(245,158,11,0.3)] select-none">
+                <i class="fa-solid fa-award text-4xl text-white"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-amber-200">Ujian Master Kesantunan Berbahasa</h2>
+            <p class="text-gray-300 max-w-xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+                Adakah anda bersedia untuk membuktikan yang anda telah menguasai adab di dalam <span class="text-amber-300 font-semibold">Rumah Kesantunan</span>?
+                <br><br>
+                Ujian simulasi interaktif ini mengandungi **15 situasi mencabar** (termasuk teka-teki **Susun Kata**). Jaga <span class="text-emerald-400 font-semibold">Bar Adab</span> anda agar tidak kecundang dalam kembara minda ini!
+            </p>
+            <div class="mb-8">
+                <input type="text" id="player-name" placeholder="Masukkan nama penuh anda..." class="bg-black/60 border border-amber-500/50 rounded-xl px-5 py-3 w-full max-w-xs text-center font-bold text-white tracking-wide focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+            <button onclick="startChallenge()" class="bg-gradient-to-r from-amber-600 to-yellow-500 hover:from-amber-500 hover:to-yellow-400 text-black font-bold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/20 transform hover:-translate-y-0.5 active:translate-y-0 transition-all">
+                Mulakan Ujian Kelayakan <i class="fa-solid fa-door-open ml-2"></i>
+            </button>
+        </div>
+
+        <!-- 2. MAP PEMILIHAN RUANG (HOUSE OVERVIEW) -->
+        <div id="screen-map" class="hidden w-full flex flex-col gap-6 text-center">
+            <h3 class="text-lg md:text-xl font-bold text-amber-200">Sila Pilih Ruang Untuk Diuji</h3>
+            <p class="text-xs md:text-sm text-gray-400">Selesaikan kesemua 5 cabaran (Dialog & Teka-Teki) bagi setiap ruang untuk mengumpul kunci emas</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-4">
+                <!-- Kad Ruang Tamu -->
+                <div id="card-room-1" onclick="enterRoom(1)" class="cursor-pointer bg-slate-900/60 hover:bg-amber-950/20 border-2 border-slate-800 hover:border-amber-500/50 rounded-2xl p-6 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="text-5xl mb-4">🛋️</div>
+                    <h4 class="font-bold text-lg text-amber-300">Ruang Tamu</h4>
+                    <p class="text-xs text-gray-400 mt-2 mb-4">Gaya Kesantunan (Pantun, Peribahasa, Bahasa Terbalik & Air Muka)</p>
+                    <div id="status-room-1" class="text-xs font-bold text-amber-500 bg-amber-500/10 py-1.5 rounded-lg border border-amber-500/20">
+                        <i class="fa-solid fa-lock mr-1"></i> Terkunci (0/5)
+                    </div>
+                </div>
+
+                <!-- Kad Ruang Makan -->
+                <div id="card-room-2" onclick="enterRoom(2)" class="cursor-pointer bg-slate-900/60 hover:bg-emerald-950/20 border-2 border-slate-800 hover:border-emerald-500/50 rounded-2xl p-6 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="text-5xl mb-4">🍽️</div>
+                    <h4 class="font-bold text-lg text-emerald-300">Ruang Makan</h4>
+                    <p class="text-xs text-gray-400 mt-2 mb-4">Sistem Bahasa (Binaan Kata/Ayat, Ejaan & Intonasi)</p>
+                    <div id="status-room-2" class="text-xs font-bold text-emerald-500 bg-emerald-500/10 py-1.5 rounded-lg border border-emerald-500/20">
+                        <i class="fa-solid fa-lock mr-1"></i> Terkunci (0/5)
+                    </div>
+                </div>
+
+                <!-- Kad Dapur & Balkoni -->
+                <div id="card-room-3" onclick="enterRoom(3)" class="cursor-pointer bg-slate-900/60 hover:bg-cyan-950/20 border-2 border-slate-800 hover:border-cyan-500/50 rounded-2xl p-6 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="text-5xl mb-4">🍳</div>
+                    <h4 class="font-bold text-lg text-cyan-300">Dapur & Balkoni</h4>
+                    <p class="text-xs text-gray-400 mt-2 mb-4">Isu & Peranan (Isu Sosial, Didikan Ibu Bapa, Kerajaan & Media)</p>
+                    <div id="status-room-3" class="text-xs font-bold text-cyan-500 bg-cyan-500/10 py-1.5 rounded-lg border border-cyan-500/20">
+                        <i class="fa-solid fa-lock mr-1"></i> Terkunci (0/5)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peti Sijil Master (Hanya boleh dibuka bila semua kunci diperolehi) -->
+            <div id="box-master" class="mt-6 p-4 bg-slate-900/80 border border-slate-800 rounded-xl max-w-md mx-auto flex items-center justify-between opacity-50">
+                <div class="text-left">
+                    <h5 class="font-bold text-sm text-gray-300">Peti Sijil Master Kelulusan</h5>
+                    <p class="text-[10px] text-gray-500 font-medium">Kumpul ketiga-tiga kunci untuk mengesahkan sijil anda</p>
+                </div>
+                <button id="btn-open-chest" disabled class="bg-gray-700 text-gray-400 font-bold px-4 py-2 rounded-lg text-xs cursor-not-allowed">
+                    Buka Peti <i class="fa-solid fa-box-open ml-1"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. ARENA SOALAN/SITUASI BILIK -->
+        <div id="screen-question" class="hidden w-full max-w-2xl bg-slate-900/90 border border-amber-500/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+            <!-- Header Situasi -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span id="room-emoji" class="text-3xl">🛋️</span>
+                    <div class="text-left">
+                        <h4 id="room-title-ui" class="font-bold text-lg text-amber-300">Ruang Tamu</h4>
+                        <span id="question-tag" class="text-[10px] bg-slate-800 text-amber-400 px-2.5 py-0.5 rounded-full border border-slate-700 font-bold uppercase tracking-wider">Gaya Kesantunan</span>
+                    </div>
+                </div>
+                <div class="text-xs bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full border border-amber-500/20 font-bold">
+                    Cabaran <span id="question-number">1</span>/5
+                </div>
+            </div>
+
+            <!-- KAWASAN WATAK (RPG STYLE) -->
+            <div id="npc-area" class="flex items-center gap-4 bg-slate-950/40 p-4 rounded-xl border border-slate-800 mb-4">
+                <div class="text-4xl p-2 bg-slate-800 rounded-full border border-slate-700" id="npc-avatar">😐</div>
+                <div class="text-left">
+                    <div class="text-xs font-bold text-amber-500" id="npc-role">WATAK:</div>
+                    <div class="text-sm font-bold text-white" id="npc-name">Azman (Rakan Baik)</div>
+                    <div class="text-[10px] bg-slate-800 text-gray-400 px-2 py-0.5 rounded mt-1 inline-block" id="npc-mood">Emosi: Biasa</div>
+                </div>
+            </div>
+
+            <!-- Situasi -->
+            <div class="bg-black/40 rounded-xl p-5 border border-slate-800 mb-6 text-left">
+                <span class="text-[10px] font-bold text-amber-500 tracking-wider uppercase">SITUASI SEKARANG:</span>
+                <p id="question-text" class="text-sm md:text-base text-gray-200 mt-2 leading-relaxed font-semibold">Teks situasi akan dimuatkan di sini...</p>
+            </div>
+
+            <!-- BAHAGIAN 1: Pilihan Jawapan Objektif (Sembunyikan jika teka-teki) -->
+            <div id="multiple-choice-section" class="space-y-3">
+                <div class="text-xs text-gray-400 text-left font-semibold mb-3">Pilih tindakan paling bersopan dan tatasusila:</div>
+                <div id="options-container" class="grid grid-cols-1 gap-3 text-left">
+                    <!-- Butang jawapan dijana di sini -->
+                </div>
+            </div>
+
+            <!-- BAHAGIAN 2: Teka-teki Susun Kata (Sembunyikan jika objektif) -->
+            <div id="scramble-section" class="hidden space-y-4">
+                <div class="text-xs text-gray-400 text-left font-semibold">Klik perkataan di bawah mengikut turutan tatatertib kesantunan yang betul:</div>
+                
+                <!-- Kotak Jawapan Terbina -->
+                <div class="bg-black/50 border border-dashed border-amber-500/30 rounded-xl p-4 min-h-[60px] flex flex-wrap gap-2 items-center" id="scramble-answer-box">
+                    <!-- Perkataan terpilih diletakkan di sini -->
+                </div>
+
+                <!-- Pilihan Blok Perkataan -->
+                <div class="flex flex-wrap justify-center gap-2 py-2" id="scramble-words-pool">
+                    <!-- Butang perkataan bersepah -->
+                </div>
+
+                <!-- Butang Kawalan -->
+                <div class="flex gap-3 justify-end mt-4">
+                    <button onclick="clearScramble()" class="bg-slate-800 hover:bg-slate-700 text-gray-300 font-bold px-4 py-2 rounded-lg text-xs transition-all">
+                        Reset Semula <i class="fa-solid fa-rotate-left ml-1"></i>
+                    </button>
+                    <button onclick="verifyScramble()" class="bg-amber-600 hover:bg-amber-500 text-black font-bold px-5 py-2 rounded-lg text-xs transition-all">
+                        Sahkan Jawapan <i class="fa-solid fa-check ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. SKRIN GAME OVER -->
+        <div id="screen-gameover" class="hidden w-full max-w-md bg-slate-900/95 border-2 border-red-500/50 rounded-2xl p-6 md:p-10 text-center shadow-2xl">
+            <div class="text-6xl mb-4 select-none">😢</div>
+            <h2 class="title-traditional text-2xl md:text-3xl font-bold text-red-500 mb-2">KURANG KESANTUNAN</h2>
+            <p class="text-xs text-gray-400 tracking-wider mb-6">BAR ADAB ANDA TELAH JATUH SEHINGGA 0%</p>
+            
+            <p class="text-sm text-gray-300 leading-relaxed mb-6">
+                Amalan budi bahasa yang luhur memerlukan penelitian dan pemikiran yang mendalam. Jangan berputus asa, mari mulakan semula ruang ini untuk membina keperibadian yang lebih baik!
+            </p>
+
+            <button onclick="restartRoom()" class="w-full bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition-all">
+                Cuba Ruang Ini Semula <i class="fa-solid fa-rotate-right ml-1"></i>
+            </button>
+        </div>
+
+        <!-- 5. SKRIN SIJIL TAMAT (RESULT ARENA) -->
+        <div id="screen-result" class="hidden w-full max-w-xl bg-slate-900/95 border-2 border-amber-500/40 rounded-2xl p-6 md:p-10 text-center shadow-2xl backdrop-blur-md">
+            <div class="text-6xl mb-4 select-none key-glow">🏆</div>
+            <h2 class="title-traditional text-2xl md:text-3xl font-bold text-amber-400 mb-2">SIJIL MASTER KESANTUNAN</h2>
+            <p class="text-xs text-gray-400 tracking-wider mb-6">TAHNIAH! ANDA TELAH MELEPASI KESELURUHAN CABARAN</p>
+
+            <!-- Sijil Rasmi Kelulusan -->
+            <div class="bg-black/50 border border-amber-500/20 rounded-xl p-6 mb-8 text-left relative overflow-hidden">
+                <div class="absolute -right-8 -bottom-8 opacity-5 text-9xl text-amber-400 font-bold select-none">LULUS</div>
+                
+                <h3 class="text-xs font-bold text-amber-500 tracking-widest uppercase mb-1">SIJIL PENGHARGAAN PENGUASAAN</h3>
+                <div class="text-xl font-bold text-white border-b border-amber-950 pb-2 mb-4" id="cert-player-name">Nama Pemain</div>
+                
+                <p class="text-xs text-gray-300 leading-relaxed mb-6">
+                    Sijil ini mengesahkan bahawa pemegang nama di atas telah berjaya menamatkan <span class="text-amber-300 font-semibold">Ujian Penilaian Rumah Kesantunan Berbahasa</span> dengan menunjukkan kepekaan yang tinggi terhadap adat, tatabahasa, sistem sapaan serta penyelesaian isu kesantunan masyarakat.
+                </p>
+
+                <!-- Markah Kelulusan -->
+                <div class="bg-amber-950/20 p-3 rounded-lg border border-amber-500/20 mb-6 flex justify-between items-center">
+                    <span class="text-xs font-bold text-gray-300">BAR ADAB DIKEKALKAN:</span>
+                    <span id="final-score-display" class="text-lg font-bold text-yellow-400">100%</span>
+                </div>
+
+                <div class="space-y-3 text-xs text-gray-400 border-t border-amber-950/60 pt-4">
+                    <div class="flex justify-between">
+                        <span>🚪 Pintu Ruang Tamu (Gaya Kesantunan):</span>
+                        <span class="font-bold text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i> Terbuka (5/5)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>🚪 Pintu Ruang Makan (Sistem Bahasa):</span>
+                        <span class="font-bold text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i> Terbuka (5/5)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>🚪 Pintu Dapur/Balkoni (Isu & Peranan):</span>
+                        <span class="font-bold text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i> Terbuka (5/5)</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-amber-950 flex justify-between items-center">
+                    <span class="text-[10px] text-gray-500 font-bold uppercase">Kod Pengesahan Sijil Digital</span>
+                    <span id="security-code" class="text-xs font-mono bg-amber-950/40 text-amber-300 px-2.5 py-1 rounded border border-amber-500/20">RK-9201-PASS</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="restartGame()" class="w-full sm:w-auto bg-amber-600 hover:bg-amber-500 text-black font-bold px-8 py-3 rounded-xl shadow-lg transition-all">
+                    Cuba Semula <i class="fa-solid fa-rotate-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MAKLUMBALAS / JAWAPAN OVERLAY -->
+    <div id="feedback-panel" class="hidden fixed inset-0 z-50 bg-black/95 flex flex-col justify-center items-center p-4">
+        <div class="max-w-md w-full bg-slate-900 border border-amber-500/30 rounded-2xl p-6 text-center shadow-2xl">
+            <div id="feedback-icon" class="text-5xl mb-4">🔑</div>
+            <h3 id="feedback-title" class="text-xl font-bold mb-2 text-white">Jawapan Anda</h3>
+            <p id="feedback-desc" class="text-gray-300 text-sm md:text-base mb-6 leading-relaxed">Huraian adab kesantunan akan dipaparkan di sini.</p>
+            <button onclick="dismissFeedback()" class="bg-gradient-to-r from-amber-600 to-yellow-500 text-black font-bold px-6 py-3 rounded-xl w-full">
+                Seterusnya <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- LOGIK JAVASCRIPT GAME -->
+    <script>
+        // State Permainan
+        let playerName = "Pendekar";
+        let adabHp = 100;
+        let unlockedRooms = { 1: false, 2: false, 3: false };
+        let currentRoomId = null;
+        let currentQuestionIdx = 0;
+        let selectedScrambleWords = [];
+        let currentQuestionCorrect = false;
+
+        // Database Soalan Gabungan (Dialog + Susun Kata)
+        const roomsData = {
+            1: {
+                id: 1,
+                name: "Ruang Tamu",
+                emoji: "🛋️",
+                colorClass: "amber",
+                subtopic: "Gaya Kesantunan Berbahasa",
+                questions: [
+                    {
+                        type: "dialog",
+                        npc: { name: "Azman", role: "Rakan Baik", avatar: "😐", mood: "Biasa" },
+                        situation: "Anda perasan rakan baik anda memakai baju-T lusuh dan seluar jean koyak ke majlis kesyukuran rasmi di rumah jiran. Bagaimanakah cara menegurnya menggunakan peribahasa secara halus tanpa menjatuhkan air mukanya?",
+                        options: [
+                            { text: "Membisik kepadanya: \"Cantik baju ni, tapi sesuai dengan peribahasa 'masuk kandang kambing mengembik', apa kata kita pinjam baju yang lebih sesuai dengan majlis malam ni?\"", correct: true, feedback: "Syabas! Menggunakan peribahasa secara lembut dan berdua dapat menjaga air muka rakan daripada dimalukan di hadapan orang ramai.", npcMood: "😊", hpImpact: 0 },
+                            { text: "Menegur di hadapan orang ramai: \"Kau ni tak tahu adat ke? Macam peribahasa 'kera kena belacan' gelisahnya orang tengok kau pakai baju koyak begini.\"", correct: false, feedback: "Tindakan ini sangat tidak bersopan kerana menjatuhkan air muka rakan di hadapan khalayak ramai. Sila cuba kaedah yang lebih menjaga hati.", npcMood: "😡", hpImpact: -25 },
+                            { text: "Membiarkan sahaja dia begitu kerana malas menjaga tepi kain orang lain.", correct: false, feedback: "Sebagai rakan yang bersopan, kita bertanggungjawab membimbing rakan secara baik demi memelihara imejnya. Cuba tegur dengan beradab.", npcMood: "😐", hpImpact: -15 }
+                        ]
+                    },
+                    {
+                        type: "scramble",
+                        npc: { name: "Adab Kiasan", role: "Teka-teki", avatar: "🧩", mood: "Cabaran" },
+                        situation: "Susun perkataan di bawah menjadi kiasan bahasa yang membawa maksud menolak idea dalam perbincangan secara paling lemah lembut dan menjaga maruah:",
+                        poolWords: ["Cadangan", "saudari", "amat", "baik,", "mari", "kita", "bincang", "bersama."],
+                        correctOrder: ["Cadangan", "saudari", "amat", "baik,", "mari", "kita", "bincang", "bersama."],
+                        feedback: "Hebat! Penyusunan ini membentuk satu penafian/penolakan berlapik yang mulia dan penuh tatasusila akademik."
+                    },
+                    {
+                        type: "dialog",
+                        npc: { name: "Datuk Ahmad", role: "Tokoh Kehormat", avatar: "😐", mood: "Biasa" },
+                        situation: "Seorang tokoh kehormat berpangkat Yang Berhormat Datuk hadir melawat program kesantunan di sekolah anda. Apakah bahasa sapaan rasmi yang betul mengikut protokol Melayu semasa menyambut ketibaan beliau?",
+                        options: [
+                            { text: "\"Selamat datang Yang Berhormat Datuk, jemput masuk ke ruang utama. Kehadiran Datuk amat kami hargai.\"", correct: true, feedback: "Tepat sekali! Memanggil tokoh kehormat mengikut gelaran pangkat rasmi (Yang Berhormat Datuk) adalah sebahagian daripada gaya sapaan bersusila.", npcMood: "🥰", hpImpact: 0 },
+                            { text: "\"Selamat datang Datuk Ahmad, gembira betul kami semua dapat berjumpa dengan Datuk hari ini.\"", correct: false, feedback: "Kurang tepat. Gelaran protokol penuh seperti 'Yang Berhormat Datuk' sepatutnya digunakan terlebih dahulu untuk menyambut tetamu rasmi. Sila cuba lagi.", npcMood: "😑", hpImpact: -15 },
+                            { text: "\"Hai YB, terima kasih kerana sudi meluangkan masa datang ke program sekolah kami.\"", correct: false, feedback: "Menggunakan singkatan 'YB' adalah terlalu tidak formal dan tidak bersopan untuk menyambut tetamu kehormat dalam majlis rasmi. Sila pilih alternatif lain.", npcMood: "😡", hpImpact: -25 }
+                        ]
+                    },
+                    {
+                        type: "scramble",
+                        npc: { name: "Ibu", role: "Keluarga", avatar: "👩", mood: "Sindiran Halus" },
+                        situation: "Ibu menyindir adik yang mengabaikan kerja rumah. Susun semula 'bahasa terbalik' ini dengan betul:",
+                        poolWords: ["Baguslah", "anak", "ibu,", "main", "telefon", "sampai", "malam."],
+                        correctOrder: ["Baguslah", "anak", "ibu,", "main", "telefon", "sampai", "malam."],
+                        feedback: "Tepat sekali! Bahasa terbalik ialah gaya sindiran halus masyarakat Melayu. Kita harus peka dengan perasaan ibu bapa dan bertindak pantas membantu."
+                    },
+                    {
+                        type: "dialog",
+                        npc: { name: "Mak Cik Normah", role: "Tuan Rumah", avatar: "🥺", mood: "Menanti Maklumbalas" },
+                        situation: "Anda dihidangkan lauk gulai yang sangat masin semasa makan di rumah rakan anda. Bagaimanakah cara terbaik menguruskan situasi ini tanpa menyinggung perasaan tuan rumah?",
+                        options: [
+                            { text: "Makan hidangan tersebut sekadar menjaga hati, dan jika ditanya, puji usahanya dengan lembut sambil menyatakan gulai itu sangat pekat aromanya.", correct: true, feedback: "Syabas! Ini adalah kaedah menguruskan air muka tuan rumah dengan melebihkan pujian terhadap usahanya menghidang makanan berbanding mengkritik kekurangan masakan.", npcMood: "🥰", hpImpact: 0 },
+                            { text: "Berkata secara terus terang: \"Weh masinnya gulai ni, kau tertumpah garam sekilo ke dalam periuk?\"", correct: false, feedback: "Sangat biadab. Teguran secara terus sebegini akan memalukan dan menyinggung perasaan tuan rumah yang telah bersusah payah memasak. Pilih cara berlapik.", npcMood: "😢", hpImpact: -30 },
+                            { text: "Meletakkan semula sudu dan enggan menyentuh langsung lauk gulai tersebut sepanjang majlis.", correct: false, feedback: "Menolak hidangan sepenuhnya secara terang-terangan dikira kurang menghormati adab bertamu. Sila cari cara yang menjaga air mukanya.", npcMood: "😑", hpImpact: -20 }
+                        ]
+                    }
+                ]
+            },
+            2: {
+                id: 2,
+                name: "Ruang Makan",
+                emoji: "🍽️",
+                colorClass: "emerald",
+                subtopic: "Sistem Bahasa",
+                questions: [
+                    {
+                        type: "dialog",
+                        npc: { name: "Cikgu Suraya", role: "Pendidik", avatar: "😐", mood: "Tegas" },
+                        situation: "Anda ingin menghantar e-mel rasmi kepada pensyarah/guru untuk memohon maaf kerana lewat menghantar tugasan. Binaan ayat manakah yang paling santun dan mematuhi tatabahasa Dewan Bahasa?",
+                        options: [
+                            { text: "\"Saya memohon maaf atas kelewatan penghantaran tugasan ini. Kelewatan ini berpunca daripada masalah kesihatan yang saya alami baru-baru ini.\"", correct: true, feedback: "Bagus! Penggunaan kata ganti diri 'Saya' dan struktur ayat pasif yang gramatis mencerminkan kesantunan tinggi dalam komunikasi akademik.", npcMood: "😊", hpImpact: 0 },
+                            { text: "\"Tugasan ini saya telah lewat hantar. Harap cikgu jangan marah sebab saya sakit beberapa hari lepas.\"", correct: false, feedback: "Binaan ayat ini tidak gramatis (tatabahasa salah: 'saya telah lewat hantar' sepatutnya 'telah saya lewatkan') dan bahasanya kurang formal. Sila cuba lagi.", npcMood: "😑", hpImpact: -15 },
+                            { text: "\"Sori sangat-sangat cikgu sebab tugasan tu saya lambat hantar. Kesihatan saya tak berapa okey minggu ni.\"", correct: false, feedback: "Penggunaan slanga bahasa pasar (sori, tu, okey) adalah sangat tidak sesuai untuk urusan rasmi bersama guru/pensyarah. Pilih ayat yang standard.", npcMood: "😡", hpImpact: -25 }
+                        ]
+                    },
+                    {
+                        type: "scramble",
+                        npc: { name: "Bahasa Sembang", role: "Teka-teki", avatar: "🧩", mood: "Sopan WhatsApp" },
+                        situation: "Susun mesej WhatsApp kepada Pengerusi Taman mengikut ejaan penuh dan tanda baca yang betul:",
+                        poolWords: ["Assalamualaikum", "Tuan,", "adakah", "mesyuarat", "dijalankan", "esok?"],
+                        correctOrder: ["Assalamualaikum", "Tuan,", "adakah", "mesyuarat", "dijalankan", "esok?"],
+                        feedback: "Sangat baik! Penggunaan ejaan penuh, huruf besar pada sapaan, dan tanda tanya yang betul melambangkan penghormatan tinggi kepada penerima mesej siber."
+                    },
+                    {
+                        type: "dialog",
+                        npc: { name: "Amir", role: "Adik", avatar: "😜", mood: "Bising" },
+                        situation: "Semasa makan bersama keluarga, adik anda mengunyah makanan dengan sangat bising. Bagaimanakah cara menegurnya dengan sebutan dan intonasi yang santun?",
+                        options: [
+                            { text: "Menggunakan intonasi yang rendah and lembut ketika adik sedang bertenang: \"Adik sayang, kalau mengunyah perlahan-lahan dan tutup mulut, barulah nampak lebih sopan.\"", correct: true, feedback: "Tepat sekali! Intonasi yang rendah dan penuh kasih sayang berkesan mendidik tanpa membuatkan orang yang ditegur berasa terancam.", npcMood: "😊", hpImpact: 0 },
+                            { text: "Menjerit dengan nada tinggi di hadapan semua orang: \"Adik! Bisinglah kunyah macam tu! Tak ada adab langsung!\"", correct: false, feedback: "Menjerit di meja makan melanggar etika kesantunan sistem bahasa (intonasi kasar) dan boleh mencetuskan pergaduhan. Pilih nada yang mendidik.", npcMood: "😢", hpImpact: -25 },
+                            { text: "Mengeluarkan bunyi decikan (tsk-tsk) berulang kali sebagai tanda protes tanpa berkata apa-apa.", correct: false, feedback: "Bunyi decikan dikira sebagai bahasa badan yang pasif-agresif dan kurang bersopan. Gunakan komunikasi lisan yang lembut.", npcMood: "😑", hpImpact: -15 }
+                        ]
+                    },
+                    {
+                        type: "scramble",
+                        npc: { name: "Bahasa Istana", role: "Warkah Diraja", avatar: "👑", mood: "Sopan Istana" },
+                        situation: "Masyarakat Melayu sangat peka dengan sistem rujukan istana. Susun perkataan di bawah menjadi sapaan menghadap raja yang betul:",
+                        poolWords: ["Patik", "mohon", "izin", "mengadap", "Tuanku", "hari", "ini."],
+                        correctOrder: ["Patik", "mohon", "izin", "mengadap", "Tuanku", "hari", "ini."],
+                        feedback: "Cemerlang! Sistem bahasa istana mempunyai nahu khas yang wajib dipelihara bagi memelihara adat dan lambang kedaulatan negara."
+                    },
+                    {
+                        type: "dialog",
+                        npc: { name: "Rakan Sekumpulan", role: "Ahli Kumpulan", avatar: "😰", mood: "Bimbang" },
+                        situation: "Anda selaku ketua kumpulan ingin memberikan arahan pembahagian tugasan dalam kumpulan sembang sekolah agar tugasan disiapkan segera. Binaan ayat perintah manakah yang paling sesuai?",
+                        options: [
+                            { text: "\"Mohon kerjasama rakan-rakan sekumpulan untuk menyemak draf tugasan ini dan memberikan maklum balas sebelum petang esok. Kerjasama anda amat dihargai.\"", correct: true, feedback: "Tepat! Menggunakan kata permintaan 'Mohon' dan 'Kerjasama' dapat melembutkan ayat perintah agar tidak kelihatan seperti mendesak atau mengarah-arah.", npcMood: "😊", hpImpact: 0 },
+                            { text: "\"Semua orang tolong siapkan bahagian masing-masing malam ni juga! Jangan nak malas sangat.\"", correct: false, feedback: "Ayat ini sangat kasar, berbaur ugutan, dan berpotensi memecahbelahkan keharmonian kumpulan. Sila pilih binaan ayat yang bermotivasi.", npcMood: "😡", hpImpact: -25 },
+                            { text: "\"Siapa yang tak hantar tugasan bahagian dia esok, saya akan terus buang nama dia daripada kumpulan.\"", correct: false, feedback: "Ayat perintah tanpa unsur kelembutan ini melanggar etika pengurusan kumpulan yang bersantun. Pilih pendekatan yang bekerjasama.", npcMood: "😢", hpImpact: -20 }
+                        ]
+                    }
+                ]
+            },
+            3: {
+                id: 3,
+                name: "Dapur & Balkoni",
+                emoji: "🍳",
+                colorClass: "cyan",
+                subtopic: "Isu & Peranan Menangani",
+                questions: [
+                    {
+                        type: "dialog",
+                        npc: { name: "Siti", role: "Mangsa Buli", avatar: "😭", mood: "Sedih" },
+                        situation: "Anda melihat rakan sekelas anda menjadi mangsa penghinaan rupa fizikal (body shaming) oleh pengguna lain di laman sosial sekolah. Apakah tindakan paling bersantun yang boleh anda lakukan mengikut etika digital?",
+                        options: [
+                            { text: "Memberikan sokongan moral secara peribadi kepada rakan tersebut, serta melaporkan akaun pembuli siber tersebut kepada pentadbir platform secara rasmi.", correct: true, feedback: "Syabas! Ini adalah tindakan bijak dan beretika tinggi dalam menangani isu sosial buli siber tanpa mengeruhkan keadaan.", npcMood: "🥺❤️", hpImpact: 0 },
+                            { text: "Turut serta membalas komen tersebut dengan makian yang lebih kasar terhadap pembuli itu untuk membelanya.", correct: false, feedback: "Membalas makian dengan makian hanya akan menambahkan kekotoran bahasa di media sosial dan melanggar kesantunan bahasa siber. Pilih jalan tindakan undang-undang atau aduan rasmi.", npcMood: "😰", hpImpact: -20 },
+                            { text: "Menjadikan komen kutukan itu sebagai bahan jenaka di dalam kelas keesokan harinya agar suasana menjadi ceria.", correct: false, feedback: "Tindakan ini sangat tidak beradab kerana tidak sensitif terhadap maruah dan perasaan rakan anda. Cari alternatif yang membina.", npcMood: "😢", hpImpact: -30 }
+                        ]
+                    },
+                    {
+                        type: "scramble",
+                        npc: { name: "Ibu Bapa", role: "Teka-teki", avatar: "🧩", mood: "Peranan Rumah" },
+                        situation: "Susun peranan utama ibu bapa bagi membendung isu penggunaan kata kesat siber dalam kalangan kanak-kanak:",
+                        poolWords: ["Ibu", "bapa", "wajib", "memantau", "aktiviti", "digital", "anak-anak."],
+                        correctOrder: ["Ibu", "bapa", "wajib", "memantau", "aktiviti", "digital", "anak-anak."],
+                        feedback: "Luar biasa! Didikan awal bermula dari rumah. Komunikasi dua hala yang sihat adalah kunci utama pembentukan sahsiah murni anak-anak."
+                    },
+                    {
+                        type: "dialog",
+                        npc: { name: "Farhan", role: "Ahli Kumpulan", avatar: "😕", mood: "Keliru" },
+                        situation: "Dalam tugasan bertulis Bahasa Melayu, ahli kumpulan anda kerap menggunakan bahasa rojak (campuran bahasa Melayu dan Inggeris) serta singkatan slanga. Apakah langkah terbaik anda selaku ketua kumpulan?",
+                        options: [
+                            { text: "Menjelaskan dengan baik tentang kepentingan menjaga ketulenan bahasa Melayu dalam tugasan akademik, dan membantu membetulkan ayat rojak tersebut bersama-sama.", correct: true, feedback: "Hebat! Mendidik rakan dengan penuh kesabaran dan membantunya adalah langkah murni memartabatkan sistem bahasa.", npcMood: "😊", hpImpact: 0 },
+                            { text: "Membiarkan sahaja tugasan tersebut dihantar kerana menganggap bahasa rojak adalah trend budaya moden yang tidak patut disekat.", correct: false, feedback: "Membiarkan bahasa rojak dalam tugasan akademik mencerminkan sikap acuh tak acuh terhadap kedaulatan bahasa kebangsaan. Bimbing mereka membetulkannya.", npcMood: "😑", hpImpact: -15 },
+                            { text: "Memarahi mereka secara terbuka dalam kumpulan dan menuduh mereka tidak patriotik kepada negara.", correct: false, feedback: "Tuduhan ekstrem tanpa bimbingan lembut hanya akan menyebabkan rakan tersebut menjauhkan diri daripada anda. Tegur secara baik.", npcMood: "😢", hpImpact: -25 }
+                        ]
+                    },
+                    {
+                        type: "scramble",
+                        npc: { name: "Kerajaan", role: "Slogan Kempen", avatar: "🏛️", mood: "Peranan Media" },
+                        situation: "Susun slogan kempen budi bahasa kebangsaan anjuran kerajaan yang sering disiarkan di media massa:",
+                        poolWords: ["Budi", "bahasa", "budaya", "kita,", "amalkan", "setiap", "masa."],
+                        correctOrder: ["Budi", "bahasa", "budaya", "kita,", "amalkan", "setiap", "masa."],
+                        feedback: "Hebat! Menggunakan media alatan moden dan menghebahkan slogan secara berterusan adalah asas kelangsungan jati diri warisan bangsa."
+                    },
+                    {
+                        type: "dialog",
+                        npc: { name: "Cikgu Kamal", role: "Disiplin Sekolah", avatar: "😐", mood: "Bimbang" },
+                        situation: "Pihak sekolah mendapati amalan memberi salam dan menghormati guru semakin merosot dalam kalangan murid. Program manakah yang paling berkesan dilaksanakan oleh institusi pendidikan?",
+                        options: [
+                            { text: "Melaksanakan program \"Sapaan Mesra, Guru Disayangi\" yang mengintegrasikan amalan berbudi bahasa dalam rutin harian sekolah secara konsisten serta memberi penghargaan kepada murid contoh.", correct: true, feedback: "Bagus! Program kesedaran yang bersifat ganjaran positif dan pembiasaan harian lebih berkesan membentuk budaya murni jangka panjang.", npcMood: "😊", hpImpact: 0 },
+                            { text: "Mengenakan denda disiplin yang berat dan gantung sekolah kepada mana-mana murid yang tidak memberi salam apabila berselisih dengan guru.", correct: false, feedback: "Hukuman ekstrem untuk isu adab adalah kurang sesuai dan tidak memupuk keikhlasan murid dalam menghormati guru. Gunakan pendekatan bimbingan.", npcMood: "😑", hpImpact: -25 },
+                            { text: "Mengabaikan isu tersebut kerana menganggap kesantunan berbahasa adalah tanggungjawab mutlak keluarga sahaja.", correct: false, feedback: "Sekolah ialah institusi sosialisasi kedua yang penting. Pihak sekolah wajib bekerjasama dengan ibu bapa memupuk nilai murni. Pilih jawapan bercorak peranan aktif.", npcMood: "😢", hpImpact: -15 }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Sound Synthesis (Web Audio API)
+        function playSfx(type) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (type === 'unlock') {
+                    osc.type = 'sine';
+                    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                    notes.forEach((freq, idx) => {
+                        const o = ctx.createOscillator();
+                        const g = ctx.createGain();
+                        o.connect(g);
+                        g.connect(ctx.destination);
+                        o.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.08));
+                        g.gain.setValueAtTime(0.1, ctx.currentTime + (idx * 0.08));
+                        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (idx * 0.08) + 0.3);
+                        o.start(ctx.currentTime + (idx * 0.08));
+                        o.stop(ctx.currentTime + (idx * 0.08) + 0.3);
+                    });
+                } else if (type === 'click') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(300, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.1);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.3);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                } else if (type === 'place') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.08);
+                }
+            } catch (e) {
+                console.log("Audio API not supported.");
+            }
+        }
+
+        // Mulakan Cabaran
+        function startChallenge() {
+            const inputName = document.getElementById('player-name').value.trim();
+            if (inputName !== "") {
+                playerName = inputName;
+            }
+            playSfx('click');
+            
+            // Reset statistics
+            adabHp = 100;
+            unlockedRooms = { 1: false, 2: false, 3: false };
+
+            document.getElementById('screen-intro').classList.add('hidden');
+            document.getElementById('screen-map').classList.remove('hidden');
+            updateHPBar();
+            updateMapUI();
+        }
+
+        // Kemaskini Bar Adab Visual
+        function updateHPBar() {
+            const bar = document.getElementById('adab-hp-bar');
+            const text = document.getElementById('adab-hp-text');
+            
+            bar.style.width = `${adabHp}%`;
+            text.innerText = `${adabHp}%`;
+
+            if (adabHp > 60) {
+                bar.className = "bg-gradient-to-r from-emerald-500 to-green-400 h-full transition-all duration-500";
+                text.className = "text-xs font-bold text-emerald-400";
+            } else if (adabHp > 30) {
+                bar.className = "bg-gradient-to-r from-amber-500 to-yellow-400 h-full transition-all duration-500";
+                text.className = "text-xs font-bold text-yellow-400";
+            } else {
+                bar.className = "bg-gradient-to-r from-red-600 to-rose-500 h-full transition-all duration-500";
+                text.className = "text-xs font-bold text-red-500";
+            }
+        }
+
+        // Goyangan Skrin jika Kerosakan Adab
+        function triggerDamageVisual() {
+            const body = document.getElementById('main-body');
+            body.classList.add('damage-shake');
+            setTimeout(() => {
+                body.classList.remove('damage-shake');
+            }, 400);
+        }
+
+        // Kemaskini Visual Map Rumah
+        function updateMapUI() {
+            for (let i = 1; i <= 3; i++) {
+                const statusDiv = document.getElementById(`status-room-${i}`);
+                const card = document.getElementById(`card-room-${i}`);
+                const indicator = document.getElementById(`key-indicator-${i}`);
+
+                if (unlockedRooms[i]) {
+                    statusDiv.innerHTML = `<i class="fa-solid fa-key mr-1"></i> KUNCI EMAS DIPEROLEH`;
+                    statusDiv.className = "text-xs font-bold text-yellow-500 bg-yellow-500/10 py-1.5 rounded-lg border border-yellow-500/30";
+                    card.classList.add('border-yellow-500/40');
+                    indicator.classList.remove('opacity-30');
+                    indicator.classList.add('bg-yellow-950/40', 'border-yellow-500/50');
+                } else {
+                    statusDiv.innerHTML = `<i class="fa-solid fa-lock mr-1"></i> Terkunci (0/5)`;
+                    if (i === 1) statusDiv.className = "text-xs font-bold text-amber-500 bg-amber-500/10 py-1.5 rounded-lg border border-amber-500/20";
+                    if (i === 2) statusDiv.className = "text-xs font-bold text-emerald-500 bg-emerald-500/10 py-1.5 rounded-lg border border-emerald-500/20";
+                    if (i === 3) statusDiv.className = "text-xs font-bold text-cyan-500 bg-cyan-500/10 py-1.5 rounded-lg border border-cyan-500/20";
+                    card.classList.remove('border-yellow-500/40');
+                    indicator.classList.add('opacity-30');
+                    indicator.classList.remove('bg-yellow-950/40', 'border-yellow-500/50');
+                }
+            }
+
+            // Semak kelayakan Peti Sijil Master
+            const allCleared = Object.values(unlockedRooms).every(status => status === true);
+            const boxMaster = document.getElementById('box-master');
+            const btnOpen = document.getElementById('btn-open-chest');
+
+            if (allCleared) {
+                boxMaster.classList.remove('opacity-50');
+                boxMaster.classList.add('border-yellow-500/60', 'bg-yellow-950/10');
+                btnOpen.removeAttribute('disabled');
+                btnOpen.className = "bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black font-bold px-4 py-2 rounded-lg text-xs cursor-pointer shadow-lg shadow-yellow-500/20 transform hover:-translate-y-0.5 transition-all";
+                btnOpen.onclick = openChest;
+            } else {
+                boxMaster.classList.add('opacity-50');
+                btnOpen.setAttribute('disabled', 'true');
+                btnOpen.className = "bg-gray-700 text-gray-400 font-bold px-4 py-2 rounded-lg text-xs cursor-not-allowed";
+            }
+        }
+
+        // Masuk Ruang Terpilih
+        function enterRoom(roomId) {
+            playSfx('click');
+            currentRoomId = roomId;
+            currentQuestionIdx = 0;
+
+            document.getElementById('screen-map').classList.add('hidden');
+            document.getElementById('screen-question').classList.remove('hidden');
+
+            loadQuestion();
+        }
+
+        // Memuatkan Soalan/Teka-teki mengikut Bilik
+        function loadQuestion() {
+            const room = roomsData[currentRoomId];
+            const q = room.questions[currentQuestionIdx];
+
+            document.getElementById('room-emoji').innerText = room.emoji;
+            document.getElementById('room-title-ui').innerText = room.name;
+            document.getElementById('question-number').innerText = currentQuestionIdx + 1;
+            document.getElementById('question-text').innerText = q.situation;
+
+            // Tema warna soalan mengikut bilik
+            const qHeader = document.getElementById('room-title-ui');
+            qHeader.className = `font-bold text-lg text-${room.colorClass}-300`;
+
+            const qTag = document.getElementById('question-tag');
+            qTag.innerText = room.subtopic;
+            qTag.className = `text-[10px] bg-slate-800 text-${room.colorClass}-400 px-2.5 py-0.5 rounded-full border border-slate-700 font-bold uppercase tracking-wider`;
+
+            // Muat naik status Watak (RPG)
+            document.getElementById('npc-avatar').innerText = q.npc.avatar;
+            document.getElementById('npc-name').innerText = q.npc.name;
+            document.getElementById('npc-role').innerText = `PERANAN: ${q.npc.role.toUpperCase()}`;
+            document.getElementById('npc-mood').innerText = `Emosi: ${q.npc.mood}`;
+
+            // Pilih jenis cabaran
+            if (q.type === "dialog") {
+                document.getElementById('multiple-choice-section').classList.remove('hidden');
+                document.getElementById('scramble-section').classList.add('hidden');
+                buildOptions(q.options);
+            } else if (q.type === "scramble") {
+                document.getElementById('multiple-choice-section').classList.add('hidden');
+                document.getElementById('scramble-section').classList.remove('hidden');
+                selectedScrambleWords = [];
+                buildScramblePool(q.poolWords);
+                updateScrambleAnswerUI();
+            }
+        }
+
+        // Bina Butang Pilihan Objektif
+        function buildOptions(options) {
+            const optContainer = document.getElementById('options-container');
+            optContainer.innerHTML = '';
+
+            options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left bg-slate-800/80 hover:bg-slate-700 border border-slate-700 rounded-xl p-4 text-xs md:text-sm font-semibold transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 flex items-start gap-3";
+                
+                const letter = String.fromCharCode(65 + idx);
+                btn.innerHTML = `
+                    <span class="flex-shrink-0 w-6 h-6 bg-slate-900 border border-slate-600 text-gray-300 font-bold text-xs rounded-full flex items-center justify-center">${letter}</span>
+                    <span class="text-gray-200 leading-relaxed">${opt.text}</span>
+                `;
+                btn.onclick = () => selectOption(opt);
+                optContainer.appendChild(btn);
+            });
+        }
+
+        // Tindakan Klik Jawapan Pilihan Objektif
+        function selectOption(opt) {
+            const panel = document.getElementById('feedback-panel');
+            const icon = document.getElementById('feedback-icon');
+            const title = document.getElementById('feedback-title');
+            const desc = document.getElementById('feedback-desc');
+
+            // Pengurusan nyawa / kerosakan
+            if (opt.hpImpact < 0) {
+                adabHp = Math.max(0, adabHp + opt.hpImpact);
+                updateHPBar();
+                triggerDamageVisual();
+            }
+
+            if (opt.correct) {
+                playSfx('unlock');
+                currentQuestionCorrect = true;
+                icon.innerText = "🔑";
+                title.innerText = "TINDAKAN SANGAT BIJAK!";
+                title.className = "text-xl font-bold text-yellow-400 mb-2";
+            } else {
+                playSfx('wrong');
+                currentQuestionCorrect = false;
+                icon.innerText = "❌";
+                title.innerText = "KURANG SOPAN / TATATERTIB";
+                title.className = "text-xl font-bold text-red-400 mb-2";
+            }
+
+            // Kemaskini Mood NPC
+            document.getElementById('npc-avatar').innerText = getMoodEmoji(opt.npcMood) || document.getElementById('npc-avatar').innerText;
+            document.getElementById('npc-mood').innerText = `Emosi: ${getMoodText(opt.npcMood)}`;
+
+            desc.innerText = opt.feedback;
+            panel.classList.remove('hidden');
+        }
+
+        // Bina Peti Perkataan Susun Kata
+        function buildScramblePool(words) {
+            const pool = document.getElementById('scramble-words-pool');
+            pool.innerHTML = '';
+            
+            // Rawak susunan butang perkataan
+            const shuffled = [...words].sort(() => Math.random() - 0.5);
+
+            shuffled.forEach(word => {
+                const btn = document.createElement('button');
+                btn.className = "bg-slate-800 hover:bg-slate-700 border border-slate-600 text-gray-200 text-xs md:text-sm font-bold px-3 py-2 rounded-lg transition-all active:scale-95";
+                btn.innerText = word;
+                btn.onclick = () => clickPoolWord(btn, word);
+                pool.appendChild(btn);
+            });
+        }
+
+        // Klik Perkataan di Pool untuk ditambah ke jawapan
+        function clickPoolWord(btn, word) {
+            playSfx('place');
+            selectedScrambleWords.push(word);
+            btn.classList.add('opacity-30', 'pointer-events-none');
+            updateScrambleAnswerUI();
+        }
+
+        // Kemaskini Kotak Jawapan Teka-teki
+        function updateScrambleAnswerUI() {
+            const ansBox = document.getElementById('scramble-answer-box');
+            ansBox.innerHTML = '';
+
+            if (selectedScrambleWords.length === 0) {
+                ansBox.innerHTML = `<span class="text-xs text-gray-500 italic">Klik perkataan di bawah untuk menyusun ayat...</span>`;
+                return;
+            }
+
+            selectedScrambleWords.forEach((word, idx) => {
+                const tag = document.createElement('span');
+                tag.className = "bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs md:text-sm font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 cursor-pointer hover:bg-amber-500/20";
+                tag.innerHTML = `${word} <i class="fa-solid fa-xmark text-[10px] text-amber-500"></i>`;
+                tag.onclick = () => removeSelectedWord(word, idx);
+                ansBox.appendChild(tag);
+            });
+        }
+
+        // Padam perkataan dari jawapan
+        function removeSelectedWord(word, index) {
+            playSfx('click');
+            selectedScrambleWords.splice(index, 1);
+            
+            // Pulihkan butang dalam pool
+            const poolButtons = document.getElementById('scramble-words-pool').children;
+            for (let btn of poolButtons) {
+                if (btn.innerText === word && btn.classList.contains('opacity-30')) {
+                    btn.classList.remove('opacity-30', 'pointer-events-none');
+                    break;
+                }
+            }
+            updateScrambleAnswerUI();
+        }
+
+        // Reset semula Teka-teki
+        function clearScramble() {
+            playSfx('click');
+            const room = roomsData[currentRoomId];
+            const q = room.questions[currentQuestionIdx];
+            selectedScrambleWords = [];
+            buildScramblePool(q.poolWords);
+            updateScrambleAnswerUI();
+        }
+
+        // Sahkan Jawapan Teka-teki
+        function verifyScramble() {
+            const room = roomsData[currentRoomId];
+            const q = room.questions[currentQuestionIdx];
+            
+            // Bandingkan susunan perkataan
+            const isCorrect = JSON.stringify(selectedScrambleWords) === JSON.stringify(q.correctOrder);
+            
+            const panel = document.getElementById('feedback-panel');
+            const icon = document.getElementById('feedback-icon');
+            const title = document.getElementById('feedback-title');
+            const desc = document.getElementById('feedback-desc');
+
+            if (isCorrect) {
+                playSfx('unlock');
+                currentQuestionCorrect = true;
+                icon.innerText = "🧩";
+                title.innerText = "TEKA-TEKI SELESAI!";
+                title.className = "text-xl font-bold text-yellow-400 mb-2";
+                desc.innerText = q.feedback;
+                document.getElementById('npc-avatar').innerText = "🥰";
+                document.getElementById('npc-mood').innerText = "Emosi: Gembira";
+            } else {
+                playSfx('wrong');
+                currentQuestionCorrect = false;
+                adabHp = Math.max(0, adabHp - 20);
+                updateHPBar();
+                triggerDamageVisual();
+
+                icon.innerText = "❌";
+                title.innerText = "SUSUNAN KURANG TEPAT";
+                title.className = "text-xl font-bold text-red-400 mb-2";
+                desc.innerText = "Tatabahasa atau kedudukan kata anda kurang bersopan atau tidak gramatis. Cuba susun sekali lagi!";
+                document.getElementById('npc-avatar').innerText = "😑";
+                document.getElementById('npc-mood').innerText = "Emosi: Bingung";
+            }
+
+            panel.classList.remove('hidden');
+        }
+
+        // Pembantu Emoji Mood
+        function getMoodEmoji(mood) {
+            const emojis = { "😊": "😊", "😡": "😡", "🥰": "🥰", "😑": "😑", "😢": "😢", "🥺❤️": "🥺" };
+            return emojis[mood] || null;
+        }
+
+        function getMoodText(mood) {
+            const texts = { "😊": "Gembira", "😡": "Marah", "🥰": "Terharu", "😑": "Kurang Puas", "😢": "Sedih", "🥺❤️": "Disayangi" };
+            return texts[mood] || "Biasa";
+        }
+
+        // Seterusnya selepas maklumbalas
+        function dismissFeedback() {
+            document.getElementById('feedback-panel').classList.add('hidden');
+
+            // Semak adakah nyawa 0 (Game Over)
+            if (adabHp <= 0) {
+                document.getElementById('screen-question').classList.add('hidden');
+                document.getElementById('screen-gameover').classList.remove('hidden');
+                return;
+            }
+
+            if (currentQuestionCorrect) {
+                if (currentQuestionIdx < 4) {
+                    // Pergi ke soalan seterusnya dalam bilik yang sama jika jawapan betul
+                    currentQuestionIdx++;
+                    loadQuestion();
+                } else {
+                    // Selesai bilik tersebut, kumpul kunci
+                    unlockedRooms[currentRoomId] = true;
+                    document.getElementById('screen-question').classList.add('hidden');
+                    document.getElementById('screen-map').classList.remove('hidden');
+                    updateMapUI();
+                }
+            } else {
+                // Jika salah, kekal di soalan yang sama untuk memberi peluang mencuba semula
+                const room = roomsData[currentRoomId];
+                const q = room.questions[currentQuestionIdx];
+                if (q.type === "scramble") {
+                    clearScramble(); // Set semula kotak susun kata untuk dicuba semula
+                }
+            }
+        }
+
+        // Mulakan semula bilik jika tewas
+        function restartRoom() {
+            playSfx('click');
+            adabHp = 100;
+            updateHPBar();
+            document.getElementById('screen-gameover').classList.add('hidden');
+            document.getElementById('screen-map').classList.remove('hidden');
+        }
+
+        // Membuka Peti Sijil Master
+        function openChest() {
+            playSfx('unlock');
+            document.getElementById('screen-map').classList.add('hidden');
+            document.getElementById('screen-result').classList.remove('hidden');
+
+            document.getElementById('cert-player-name').innerText = playerName;
+            document.getElementById('final-score-display').innerText = `${adabHp}% Keikhlasan`;
+
+            // Jana kod rahsia unik kelulusan
+            const randomCode = `RK-${Math.floor(1000 + Math.random() * 9000)}-PASS`;
+            document.getElementById('security-code').innerText = randomCode;
+        }
+
+        // Ulang semula keseluruhan permainan
+        function restartGame() {
+            playSfx('click');
+            unlockedRooms = { 1: false, 2: false, 3: false };
+            adabHp = 100;
+            document.getElementById('screen-result').classList.add('hidden');
+            document.getElementById('screen-intro').classList.remove('hidden');
+            document.getElementById('player-name').value = '';
+        }
+    </script>
+</body>
+</html>
